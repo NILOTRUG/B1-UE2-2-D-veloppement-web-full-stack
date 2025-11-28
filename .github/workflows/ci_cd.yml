@@ -5,7 +5,10 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+  
+permissions:
+  contents: read
+  issues: write
 jobs:
   zap-full:
     runs-on: ubuntu-latest
@@ -18,7 +21,8 @@ jobs:
         with:
           target: 'https://nilotrug.github.io/B1-UE2-2-D-veloppement-web-full-stack/'
           token: ${{ secrets.GITHUB_TOKEN }}
-
+          issue_title: 'OWASP ZAP Scan Report'
+          
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
@@ -45,3 +49,4 @@ jobs:
             -Dsonar.exclusions=**/vendor/**,**/node_modules/**
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+         
