@@ -42,7 +42,7 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=NILOTRUG_B1-UE2-2-D-veloppement-web-full-stack
-            -Dsonar.organization=NILOTRUG
+            -Dsonar.organization=nilotrug
             -Dsonar.sources=.
             -Dsonar.exclusions=**/vendor/**,**/node_modules/**
         env:
