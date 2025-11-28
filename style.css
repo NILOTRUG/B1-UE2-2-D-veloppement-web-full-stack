@@ -51,9 +51,7 @@ header {
 
 
 
-/* *****************************************************
-* 2. GRILLE ET CARTES
-***************************************************** */
+/* GRILLE ET CARTES */
 .event-grid {
     /* Utilisation de Flexbox pour une disposition sur une seule ligne */
     display: flex;
@@ -200,39 +198,6 @@ header {
 
 
 
-/* CONFIGURATION DE LA VAGUE */
-.wave-container1 {
-    position: absolute;
-    bottom: 550px;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-}
-
-.wave-container1 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 50px; /* Hauteur  vague */
-}
-
-.wave-container1 .shape-fill {
-    fill: #0B0F19;              /* couleur vague*/
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* *****************************************************
 * Page d'acceuil
@@ -367,3 +332,11 @@ header {
     border-color: #2563eb;
 
 }
+
+
+
+/* *****************************************************
+* Page d'acceuil
+***************************************************** */
+
+
