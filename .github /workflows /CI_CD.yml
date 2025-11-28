@@ -22,11 +22,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      # Ici tu pourras plus tard ajouter :
-      # - install PHP deps (composer)
-      # - npm install / build front
-      # - tests, etc.
-
       - name: SonarCloud Scan
         uses: sonarsource/sonarqube-scan-action@v6
         with:
