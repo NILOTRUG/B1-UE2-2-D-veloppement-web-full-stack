@@ -43,7 +43,7 @@ jobs:
           projectBaseDir: .
           args: >
             -Dsonar.host.url=https://sonarcloud.io
-            -Dsonar.organization=NILOTRUG
+            -Dsonar.organization=nilotrug
             -Dsonar.projectKey=NILOTRUG_B1-UE2-2-D-veloppement-web-full-stack
             -Dsonar.sources=.
             -Dsonar.exclusions=**/vendor/**,**/node_modules/**
