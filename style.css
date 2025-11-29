@@ -2,8 +2,11 @@
 * 1. STYLES GÉNÉRAUX ET COULEURS
 ***************************************************** */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap');
+
+
 body { 
-    font-family: Arial, sans-serif; 
+    font-family: 'Inter', sans-serif; 
     background-color: #0B0F19; 
     color: #e2e8f0; 
     margin: 0;
@@ -11,16 +14,33 @@ body {
 }
 
 
+
 h1{
     text-align: center;
-
 }
 
+
+
+h1, h2, h3, .nav-item {
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase; /* Met les titres en majuscules pour faire plus "interface" */
+    letter-spacing: 1px; /* Espacement léger entre les lettres */
+}
 
 
 h2 {
     color: #e2e8f0;
+    border-left: 4px solid #2563eb;
+    padding-left: 25px;
+    text-shadow: 0 0 10px rgba(37, 99, 235, 0.8), 0 0 20px rgba(37, 99, 235, 0.4);
 }
+
+h3{
+text-shadow: 0 0 10px rgba(37, 99, 235, 0.8), 0 0 20px rgba(37, 99, 235, 0.4);
+
+}
+
+
 
 
 
@@ -72,13 +92,15 @@ header {
     flex-shrink: 0; 
     height: 480px; /* longueur */
     width: 250px; /* largeur */
-    background-color: #1a202c;
+    background-color: rgba(26, 32, 44, 0.6);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); /* Pour Safari */
     border-radius: 10px;
     overflow: hidden; 
-    border: 1px solid #374151;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(55, 65, 81, 0.5); /* Bordure plus subtile */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     cursor: pointer; 
-    transition: transform 0.2s;
+    transition: all 0.3s ease;
 }
 
 .event-card:hover {
@@ -125,7 +147,8 @@ header {
 #app-container {
     display: flex; 
     min-height: 100vh; 
-    background-color: #0B0F19; 
+    background-color: transparent; 
+    z-index: 1;
 }
 
 /* 2.1 STYLES DE LA BARRE LATÉRALE (SIDEBAR) */
@@ -167,8 +190,10 @@ header {
 }
 
 .nav-item.active {
-    background-color: #2563eb; 
-    color: #ffffff;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.4) 100%);
+    color: #60a5fa; /* Bleu plus clair */
+    border-right: 3px solid #60a5fa; /* Barre lumineuse à droite */
+    box-shadow: inset -10px 0 15px -10px rgba(37, 99, 235, 0.7); /* Lueur interne */
 }
 
 .nav-item i {
@@ -252,7 +277,8 @@ header {
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    transform: rotate(180deg)
+    transform: rotate(180deg);
+    z-index: 0;
 }
 
 .wave-container svg {
@@ -288,8 +314,9 @@ header {
     height: 120px; 
     
     /* Style visuel */
-    background-color: #1a202c;
-    border: 1px solid #374151;
+    background-color: rgba(26, 32, 44, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(55, 65, 81, 0.5);
     border-radius: 15px;     
     
     /* Pour aligner le texte et l'icône */
@@ -336,7 +363,32 @@ header {
 
 
 /* *****************************************************
-* Page d'acceuil
+* Chargement page
 ***************************************************** */
 
 
+/* --- Notification Rigolote (Toast) --- */
+.fun-toast {
+    position: fixed;
+    top: 50px; /* En haut */
+    right: 20px; /* Collé à droite */
+    
+    background-color: rgba(11, 15, 25, 0.95);
+    color: #00ffff;
+    border-left: 4px solid #00ffff; /* barre à gauche, plus stylé */
+    border-radius: 4px;
+    padding: 15px 20px;
+    
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    
+    /* Animation : Caché vers la droite */
+    transform: translateX(120%); 
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fun-toast.visible {
+    transform: translateX(0); /* Rentre sur l'écran */
+}
