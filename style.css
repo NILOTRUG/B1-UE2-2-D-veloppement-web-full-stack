@@ -73,20 +73,16 @@ header {
 
 /* GRILLE ET CARTES */
 .event-grid {
-    /* Utilisation de Flexbox pour une disposition sur une seule ligne */
     display: flex;
-    /* Empêche les éléments de passer à la ligne suivante */
-    flex-wrap: nowrap; 
-    /* Centre le bloc entier dans le conteneur parent */
-    justify-content: left; 
-    /* Ajoute un espacement entre les cartes */
-    gap: 10px; 
+    flex-wrap: wrap;       /* INDISPENSABLE : Autorise le passage à la ligne */
+    justify-content: center; /* Centre les cartes (mieux que left sur mobile) */
+    gap: 20px;             /* Espacement aéré */
     margin-top: 30px;
-    /* Force le défilement horizontal si la ligne dépasse la taille de l'écran */ 
-    /* S'assure que la grille prend la largeur minimale nécessaire */
-    width: auto; 
-    padding-bottom: 10px; /* Ajout d'espace pour la barre de défilement */
+    width: 100%;           /* Prend toute la largeur disponible */
+    padding-bottom: 20px;
 }
+
+
 .event-card {
     /* Ajoute ceci pour que chaque carte ait une taille fixe et ne s'étire pas */
     flex-shrink: 0; 
@@ -216,9 +212,13 @@ header {
 
 
 #menu-toggle {
-    background-color: #111827; /* Couleur de fond (ici bleu, comme tes liens actifs) */
+    background-color: transparent; 
     color: #ffffff;
-
+    font-size: 2rem;       /* Taille de l'icône (les 3 lignes) */
+    padding: 10px;         /* Espace autour de l'icône*/
+    border-radius: 10px;   /* pour arrondir les coins */
+    border: none;          /* Enlève la bordure grise par défaut */
+    cursor: pointer;       
 }
 
 
@@ -231,16 +231,21 @@ header {
 
 
 
+
 /* --- STYLE DE LA PAGE D'ACCUEIL AVEC VAGUES --- */
+
 
 .hero-header {
     position: relative;
     /* Un dégradé : du gris foncé (sidebar) vers du bleu (active) */
     background: linear-gradient(135deg, #111827 0%, #2563eb 100%);
-    height: 400px; /* Hauteur de la bannière */
+    height: 320px; 
+    
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; /* <--- AJOUTE CETTE LIGNE ICI */
+    
+    align-items: center;     /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
     text-align: center;
     color: white;
 }
@@ -253,8 +258,16 @@ header {
 }
 
 
+
+
 .hero-content {
-    margin-bottom: 50px; /* Remonte un peu le texte */
+    position: relative;
+    z-index: 2;
+    
+    /* Ajoute cette ligne pour descendre le texte */
+    margin-top: 70px;  /* Plus le chiffre est grand, plus le texte descend */
+    
+    margin-bottom: 20px; /* L'espace entre le texte et les barres en dessous */
 }
 
 .hero-content h1 {
@@ -299,7 +312,7 @@ header {
     padding: 40px 20px;   /* interieur bloc*/
     display: flex;
     justify-content: center; 
-    margin-top: 70px;     /* espace avec la wave*/
+    margin-top: 60px;     /* espace avec la wave*/
 }
 
 .quick-links-container {
@@ -307,6 +320,7 @@ header {
     flex-wrap: wrap; /* Passe à la ligne si trop petit*/
     gap: 20px; /* Espace entre les rectangles */
     justify-content: center;
+    
 }
 
 .quick-card {
@@ -362,6 +376,205 @@ header {
 
 
 
+
+
+
+/* --- BARRE FESTIVE (AUDIO WAVE) --- */
+.party-wave {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Aligné en bas pour que ça grandisse vers le haut */
+    height: 250px;
+    gap: 6px; /* Espace entre les barres */
+    margin-bottom: 30px; /* Espace avant la grille d'événements */
+    margin-right: 40px; /* Plus le chiffre est grand, plus ça part à gauche */
+}
+
+
+
+.party-wave .bar {
+    width: 8px;
+    background: linear-gradient(to top, #00ffff, #ff00ff); /* Dégradé Cyan -> Rose */
+    border-radius: 5px;
+    animation: sound-dance 1s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* On donne un rythme différent à chaque barre pour faire "naturel" */
+.party-wave .bar:nth-child(1) { height: 10px; animation-duration: 0.8s; }
+.party-wave .bar:nth-child(2) { height: 20px; animation-duration: 1.1s; }
+.party-wave .bar:nth-child(3) { height: 35px; animation-duration: 1.3s; }
+.party-wave .bar:nth-child(4) { height: 25px; animation-duration: 0.9s; }
+.party-wave .bar:nth-child(5) { height: 40px; animation-duration: 1.0s; }
+.party-wave .bar:nth-child(6) { height: 30px; animation-duration: 1.2s; }
+.party-wave .bar:nth-child(7) { height: 20px; animation-duration: 0.7s; }
+.party-wave .bar:nth-child(8) { height: 35px; animation-duration: 1.4s; }
+.party-wave .bar:nth-child(9) { height: 15px; animation-duration: 1.0s; }
+.party-wave .bar:nth-child(10) { height: 25px; animation-duration: 0.8s; }
+
+/* L'animation qui fait bouger les barres */
+@keyframes sound-dance {
+    0%, 100% { transform: scaleY(1); opacity: 0.8; }
+    50% { transform: scaleY(1.8); opacity: 1; filter: brightness(1.5); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- ROBOT MASCOTTE (CYBER-BOT) --- */
+#robot-mascot {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: float 4s ease-in-out infinite; /* Animation de flottement */
+}
+
+/* Le corps du robot */
+.robot-head {
+    width: 60px;
+    height: 50px;
+    background: #111827; /* Sombre */
+    border: 2px solid #2563eb; /* Bordure Cyan */
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Les yeux */
+.robot-eyes {
+    display: flex;
+    gap: 12px;
+}
+
+.eye {
+    width: 8px;
+    height: 8px;
+    background-color: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ffff;
+    animation: blink 3s infinite; /* Animation des yeux */
+}
+
+/* L'antenne */
+.robot-antenna {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background-color: #2563eb;
+}
+.robot-antenna::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -2px;
+    width: 6px;
+    height: 6px;
+    background-color: #ff00ff; /* Bout rose */
+    border-radius: 50%;
+}
+
+/* Bulle de dialogue */
+.robot-message {
+    position: absolute;
+    bottom: 80px; /* Au-dessus de la tête */
+    right: 0;
+    width: 150px;
+    background-color: #111827;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border:1px solid white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0; /* Caché par défaut */
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.robot-message::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 25px;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(248, 244, 244, 0.95);
+    transform: rotate(45deg);
+}
+
+/* Classe pour afficher le message */
+.robot-message.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ANIMATIONS --- */
+
+/* Flottement haut/bas */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Clignement des yeux */
+@keyframes blink {
+    0%, 96%, 100% { transform: scaleY(1); }
+    98% { transform: scaleY(0.1); }
+}
+
+/* Pulse au survol de la souris */
+#robot-mascot:hover {
+    transform: scale(1.1); /* Grossit un peu */
+}
+
+#robot-mascot:hover .robot-head {
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* *****************************************************
 * Chargement page
 ***************************************************** */
@@ -370,7 +583,7 @@ header {
 /* --- Notification Rigolote (Toast) --- */
 .fun-toast {
     position: fixed;
-    top: 50px; /* En haut */
+    top: 37px; /* En haut */
     right: 20px; /* Collé à droite */
     
     background-color: rgba(11, 15, 25, 0.95);
@@ -391,4 +604,120 @@ header {
 
 .fun-toast.visible {
     transform: translateX(0); /* Rentre sur l'écran */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *****************************************************
+   --- VERSION MOBILE (STYLE IPHONE) ---
+   ***************************************************** */
+
+@media screen and (max-width: 550px) {
+
+    /* 1. Réorganisation globale : On empile tout verticalement */
+    #app-container {
+        flex-direction: column;
+    }
+
+    /* 2. Transformation du Menu Latéral en "Bottom Bar" (Barre du bas) */
+    #sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px; /* Hauteur classique d'une barre d'app */
+        border-right: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 5000; /* Très haut pour passer au-dessus de tout */
+        padding: 0;
+        background-color: rgba(11, 15, 25, 0.95); /* Fond sombre quasi opaque */
+        backdrop-filter: blur(10px); /* Effet flou "Verre" style iOS */
+    }
+
+    /* On cache le logo ou le haut de la sidebar si nécessaire */
+    .sidebar-top {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* On aligne les icônes horizontalement */
+    nav {
+        display: flex;
+        flex-direction: row; /* Horizontal */
+        justify-content: space-around; /* Espacement égal */
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* Style des boutons (Icônes) */
+    .nav-item {
+        flex-direction: column; /* Icône au-dessus du texte */
+        padding: 5px;
+        font-size: 0.7rem; /* Texte plus petit */
+        margin-bottom: 0;
+        border-radius: 0;
+        background: transparent !important; /* Pas de fond au clic */
+    }
+
+    .nav-item i {
+        font-size: 1.4rem; /* Icône plus grosse */
+        margin-right: 0;
+        margin-bottom: 4px;
+    }
+
+    /* Indicateur actif (petit point ou changement de couleur) */
+    .nav-item.active {
+        color: #00ffff; /* Cyan fluo */
+        border-left: none; /* On enlève la barre de gauche */
+    }
+
+    /* 3. Ajustement du contenu principal */
+    #main-content {
+        width: 100%;
+        padding: 15px;
+        padding-bottom: 90px; /* IMPORTANT : Pour ne pas être caché par la barre du bas */
+        box-sizing: border-box; /* Pour éviter les débordements */
+    }
+
+    /* 4. Le Robot Mascotte : On le remonte pour ne pas gêner la barre */
+    #robot-mascot {
+        bottom: 85px; /* Au-dessus de la barre de navigation */
+        right: 15px;
+        transform: scale(0.8); /* Un peu plus petit sur mobile */
+    }
+    
+    /* 5. Grille d'événements sur une seule colonne */
+    .event-grid, .quick-links-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .event-card, .quick-card {
+        width: 100%; /* Prend toute la largeur */
+        max-width: 350px;
+    }
+    
+    /* Cacher le bouton menu (hamburger) car on a la barre du bas */
+    #menu-toggle {
+        display: none;
+    }
 }

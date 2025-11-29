@@ -128,45 +128,60 @@ setupSidebarToggle();
 
 
 
+
+
+
 // *****************************************************
-// --- MESSAGES D'ACCUEIL ALÉATOIRES ---
+// --- CYBER-BOT : LOGIQUE ---
 // *****************************************************
 
 function showRandomWelcome() {
-    // 1. Liste des 10 messages rigolos
+    // Liste des messages 
     const messages = [
         "Mot de passe '123456' détecté. Sérieux ?",
         "Tu devrais pas être en train de bosser là ?",
-        "Si tu lis ça, c'est que le code n'a pas crashé."
-        "T'es sûr que ta webcam est éteinte ?"
-        "On recrute des licornes(expérience requise) ✨."
+        "Si tu lis ça, c'est que le code n'a pas crashé",
+        "T'es sûr que ta webcam est éteinte ?",
+        "On recrute des licornes (expérience requise) ✨"
     ];
 
-    // 2. Choisir un message au hasard
-    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
-
-    // 3. Créer l'élément HTML (la div)
-    const toast = document.createElement("div");
-    toast.classList.add("fun-toast");
+    const bubble = document.getElementById('robot-bubble');
     
-    // Ajouter une petite icône robot ou info
-    toast.innerHTML = `<i class="fas fa-robot"></i> &nbsp; ${randomMsg}`;
+    // Si le robot n'est pas sur la page (ex: autre page html), on arrête
+    if (!bubble) return;
 
-    // 4. L'ajouter au corps de la page
-    document.body.appendChild(toast);
+    // Choisir un message
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    bubble.innerText = randomMsg;
 
-    // 5. Animation : Afficher après 1 seconde
+    // Afficher la bulle
+    bubble.classList.add('visible');
+
+    // Cacher la bulle après 4 secondes
     setTimeout(() => {
-        toast.classList.add("visible");
-    }, 1000);
-
-    // 6. Animation : Enlever après 5 secondes
-    setTimeout(() => {
-        toast.classList.remove("visible");
-        // Supprimer complètement du code après la transition
-        setTimeout(() => toast.remove(), 500);
-    }, 5000);
+        bubble.classList.remove('visible');
+    }, 4000);
 }
 
-// Lancer la fonction quand la page est chargée
-window.addEventListener("DOMContentLoaded", showRandomWelcome);
+// 1. Le robot parle au chargement de la page
+window.addEventListener("DOMContentLoaded", () => {
+    // Petit délai pour laisser l'animation commencer
+    setTimeout(showRandomWelcome, 1000);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
